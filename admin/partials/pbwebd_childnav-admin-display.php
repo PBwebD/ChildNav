@@ -20,11 +20,9 @@
 
     <form method="post" name="pbwebd-pagenav_options" action="options.php">
 
-        <?php // Grab all options
-        $options = get_option($this->plugin_name);
+        <?php $options = get_option($this->plugin_name);
 
-        // Title quote
-        $depth = (empty($options['depth']) ? -1 : $options['depth']);
+        $depth = ( intval($options['depth']) < -1 ) ? -1 : intval($options['depth']);
         $include = (empty($options['include']) ? '' : $options['include']);
         $exclude = (empty($options['exclude']) ? '' : $options['exclude']);
         $sort = (empty($options['sort']) ? 'menu_order' : $options['sort']);

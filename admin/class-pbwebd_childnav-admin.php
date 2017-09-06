@@ -132,7 +132,7 @@ class Pbwebd_childnav_Admin {
 
     	$valid = array();
 
-    	$depth = $input['depth'];
+    	$depth = intval($input['depth']);
     	$include = $input['include'];
     	$exclude = $input['exclude'];
     	$sort = $input['sort'];

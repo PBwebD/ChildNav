@@ -64,7 +64,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
 
     public function form( $instance ) {
 
-        $depth = ( $instance['depth'] < -1 ) ? -1 : $instance['depth'];
+        $depth = ( intval($instance['depth']) < -1 ) ? -1 : intval($instance['depth']);
         $include = ( empty($instance['include'] ) ? '' : $instance['include']);
         $exclude = ( empty($instance['exclude'] ) ? '' : $instance['exclude']);
         $sort = ( empty($instance['sort'] ) ? 'menu_order' : $instance['sort']); ?>
