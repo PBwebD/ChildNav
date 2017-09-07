@@ -5,8 +5,8 @@ A WordPress plugin to display child (and parent) pages.
 
 ## Possible TODOs
 * Add a title option
-* Elect to show parent page as title/link
-* ADD pages to list, not just "include"
+* Elect to show parent page as title or link
+* ADD pages to list, not just ONLY include
 
 ## Notes
 * Include ONLY includes pages listed
