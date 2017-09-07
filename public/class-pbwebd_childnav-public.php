@@ -96,11 +96,18 @@ class Pbwebd_childnav_Public {
 
 		global $post;
 
+		$options = get_option($this->plugin_name);
+
+        $depth = ( intval($options['depth']) < -1 ) ? -1 : intval($options['depth']);
+        $include = (empty($options['include']) ? '' : $options['include']);
+        $exclude = (empty($options['exclude']) ? '' : $options['exclude']);
+        $sort = (empty($options['sort']) ? 'menu_order' : $options['sort']);
+
 		$atts = shortcode_atts( array(
-			'depth' => -1, // -1 (any depth), 0 (all pages), 1 (top level), #
-			'exclude' => '',
-			'include' => '',
-			'sort' => 'menu_order'
+			'depth' => $depth,
+			'exclude' => $exclude,
+			'include' => $include,
+			'sort' => $sort
 		), $atts );
 
 		// todo? wrapper class option

@@ -2,3 +2,17 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.childnav-wrap { padding: 15px; }
+.childnav-wrap h2 { margin-bottom: 15px !important; }
+.input-wrapper { padding: 10px; }
+.input-wrapper span { display: inline-block; vertical-align: middle; }
+.input-wrapper label { display: inline-block; text-align: right; width: 100px; vertical-align: middle; }
+.input-wrapper input { padding: 7px 10px; height: auto; }
+
+.subtext { font-size: 12px; font-style: italic; margin-top: 0; margin-left: 105px; }
+
+@media screen and (max-width: 500px){
+    .input-wrapper label { width: auto; }
+    .subtext { margin-left: 0; }
+}

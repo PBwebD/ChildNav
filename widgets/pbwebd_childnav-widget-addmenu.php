@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 /**
  * The widget functionality of the plugin.
  *
@@ -49,16 +50,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             'title_li' => ''
         ) );
 
-        if( $page_list ){
-
-            echo $args['before_widget'];
-
-            // display $title
-            echo $page_list;
-
-            echo $args['after_widget'];
-
-        }
+        echo $page_list;
 
     }
 
