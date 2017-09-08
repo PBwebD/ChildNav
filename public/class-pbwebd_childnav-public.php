@@ -145,7 +145,7 @@ class Pbwebd_childnav_Public {
 			'title_li' => ''
 		) );
 
-		return $page_list;
+		return '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
 
 	}
 

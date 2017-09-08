@@ -42,6 +42,6 @@ $page_list = wp_list_pages( array(
     'title_li' => ''
 ) );
 
-echo $page_list;
+echo '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
 
 ?>

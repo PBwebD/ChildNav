@@ -50,7 +50,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             'title_li' => ''
         ) );
 
-        echo $page_list;
+        echo '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
 
     }
 
