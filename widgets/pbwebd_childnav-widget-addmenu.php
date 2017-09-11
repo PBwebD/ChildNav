@@ -19,7 +19,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             'description' => 'Add a child navigation to a sidebar.'
         );
 
-        parent::__construct( 'pbwebd_childnav_widget', 'Child Nav', $widget_options);
+        parent::__construct( 'pbwebd_childnav_widget', 'Child Nav', $widget_options );
 
     }
 
@@ -31,7 +31,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         // $args['before_title'] . $title . $args['after_title'];
 
         // GET ID OF PARENT PAGE
-        if ($post->post_parent) {
+        if ( $post->post_parent ) {
             $ancestors = get_post_ancestors( $post->ID );
             $root = count( $ancestors ) - 1;
             $parent = $ancestors[$root];
@@ -47,7 +47,7 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             'include' => $instance['include'],
             'post_type' => $post->post_type,
             'sort_column' => $instance['sort'],
-            'title_li' => ''
+            'title_li' => $instance['list_title']
         ) );
 
         echo '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
@@ -57,9 +57,10 @@ class Pbwebd_childnav_Widget extends WP_Widget {
     public function form( $instance ) {
 
         $depth = ( intval($instance['depth']) < -1 ) ? -1 : intval($instance['depth']);
-        $include = ( empty($instance['include'] ) ? '' : $instance['include']);
-        $exclude = ( empty($instance['exclude'] ) ? '' : $instance['exclude']);
-        $sort = ( empty($instance['sort'] ) ? 'menu_order' : $instance['sort']); ?>
+        $include = ( empty($instance['include']) ) ? '' : $instance['include'];
+        $exclude = ( empty($instance['exclude']) ) ? '' : $instance['exclude'];
+        $sort = ( empty($instance['sort']) ) ? 'menu_order' : $instance['sort'];
+        $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title']; ?>
 
         <p>
             <label for="<?php echo $this->get_field_id('depth'); ?>">Depth:</label>
@@ -86,9 +87,14 @@ class Pbwebd_childnav_Widget extends WP_Widget {
                 <option value="post_parent"<?php selected($sort, 'post_parent') ?>>Post Parent</option>
                 <option value="id"<?php selected($sort, 'id') ?>>Post ID</option>
             </select>
-        </p><?php
+        </p>
 
-    }
+        <p>
+            <label for="<?php echo $this->get_field_id('list_title'); ?>">List Title:</label>
+            <input type="text" id="<?php echo $this->get_field_id('list_title'); ?>" name="<?php echo $this->get_field_name('list_title'); ?>" value="<?php echo $list_title; ?>" />
+        </p>
+
+    <?php }
 
     public function update( $new_instance, $old_instance ) {
 
@@ -97,7 +103,8 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $instance['depth'] = ( $new_instance['depth'] < -1 ) ? -1 : $new_instance['depth'];
         $instance['include'] = preg_replace('/\s+/', '', $new_instance['include']);
         $instance['exclude'] = preg_replace('/\s+/', '', $new_instance['exclude']);
-        $instance['sort'] = ( empty( $new_instance['sort'] ) ) ? 'menu_order' : $new_instance['sort'];
+        $instance['sort'] = ( empty($new_instance['sort']) ) ? 'menu_order' : $new_instance['sort'];
+        $instance['list_title'] = ( empty($new_instance['list_title']) ) ? '' : $new_instance['list_title'];
 
         return $instance;
 

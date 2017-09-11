@@ -23,11 +23,12 @@ class Pbwebd_childnav_Activator {
             'depth' => -1,
             'exclude' => '',
             'include' => '',
-            'sort' => 'menu_order'
+            'sort' => 'menu_order',
+            'list_title' => ''
         );
 
         // Save defaults array as settings
-        $options = wp_parse_args(get_option('plugin_options'), $defaults);
+        $options = wp_parse_args( get_option('plugin_options'), $defaults );
 
 	}
 

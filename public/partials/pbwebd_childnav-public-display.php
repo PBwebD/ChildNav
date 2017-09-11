@@ -23,7 +23,7 @@ global $post;
 $options = get_option($this->plugin_name);
 
 // GET ID OF PARENT PAGE
-if ($post->post_parent) {
+if ( $post->post_parent ) {
     $ancestors = get_post_ancestors( $post->ID );
     $root = count( $ancestors ) - 1;
     $parent = $ancestors[$root];
@@ -39,7 +39,7 @@ $page_list = wp_list_pages( array(
     'include' => $options['include'],
     'post_type' => $post->post_type,
     'sort_column' => $options['sort'],
-    'title_li' => ''
+    'title_li' => $options['list_title']
 ) );
 
 echo '<div class="childmenu"><ul>' . $page_list . '</ul></div>';

@@ -99,15 +99,17 @@ class Pbwebd_childnav_Public {
 		$options = get_option($this->plugin_name);
 
         $depth = ( intval($options['depth']) < -1 ) ? -1 : intval($options['depth']);
-        $include = (empty($options['include']) ? '' : $options['include']);
-        $exclude = (empty($options['exclude']) ? '' : $options['exclude']);
-        $sort = (empty($options['sort']) ? 'menu_order' : $options['sort']);
+        $include = ( empty($options['include']) ) ? '' : $options['include'];
+        $exclude = ( empty($options['exclude']) ) ? '' : $options['exclude'];
+        $sort = ( empty($options['sort']) ? 'menu_order' : $options['sort']);
+        $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
 
 		$atts = shortcode_atts( array(
 			'depth' => $depth,
 			'exclude' => $exclude,
 			'include' => $include,
-			'sort' => $sort
+			'sort' => $sort,
+			'list_title' => $list_title
 		), $atts );
 
 		// todo? wrapper class option
@@ -121,7 +123,7 @@ class Pbwebd_childnav_Public {
 		$atts['exclude'] = preg_replace('/\s+/', '', $atts['exclude']);
 		$atts['include'] = preg_replace('/\s+/', '', $atts['include']);
 		// CHECK SORT COLUMN
-		if( !isset( $atts['sort'] ) ){
+		if( !isset($atts['sort']) ){
 			$atts['sort'] = 'menu_order';
 		}
 
@@ -142,7 +144,7 @@ class Pbwebd_childnav_Public {
 			'include' => $atts['include'],
 			'post_type' => $post->post_type,
 			'sort_column' => $atts['sort'],
-			'title_li' => ''
+			'title_li' => $atts['list_title']
 		) );
 
 		return '<div class="childmenu"><ul>' . $page_list . '</ul></div>';

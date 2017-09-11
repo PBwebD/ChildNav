@@ -24,9 +24,10 @@
         <?php $options = get_option($this->plugin_name);
 
         $depth = ( intval($options['depth']) < -1 ) ? -1 : intval($options['depth']);
-        $include = (empty($options['include']) ? '' : $options['include']);
-        $exclude = (empty($options['exclude']) ? '' : $options['exclude']);
-        $sort = (empty($options['sort']) ? 'menu_order' : $options['sort']);
+        $include = ( empty($options['include']) ) ? '' : $options['include'];
+        $exclude = ( empty($options['exclude']) ) ? '' : $options['exclude'];
+        $sort = ( empty($options['sort']) ) ? 'menu_order' : $options['sort'];
+        $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name); ?>
@@ -65,6 +66,13 @@
                     <option value="id"<?php selected($sort, 'id') ?>>Post ID</option>
                 </select></span>
                 <p class="subtext">Method to sort pages.</p>
+            </div>
+
+            <!-- List Title -->
+            <div class="input-wrapper">
+                <label for="<?php echo $this->plugin_name; ?>-list_title"><?php esc_attr_e('List Title:', $this->plugin_name); ?></label>
+                <span><input type="number" id="<?php echo $this->plugin_name; ?>-list_title" name="<?php echo $this->plugin_name; ?>[list_title]" value="<?php echo $list_title; ?>" /></span>
+                <p class="subtext">Title to display above the page list.</p>
             </div>
 
         </fieldset>
