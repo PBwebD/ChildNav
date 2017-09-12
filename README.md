@@ -8,13 +8,13 @@ Set default values, set widget values, and override default values with shortcod
 
 | Attribute     | Notes
 | ------------- | --------------------------
-| depth         | -1 (list of all), 0 (nested list of all), 1+ (# of levels)
+| depth         | -1 (list of all), 0 (nested list of all), or 1+ (# of levels)
 | include       | comma-separated list of page IDs, ONLY includes pages listed
 | exclude       | comma-separated list of page IDs
-| sort          | menu order, post date, post title, post name, post parent
+| sort          | menu_order, post_date, post_title, post_name, or post_parent
 | list_title    | text to display above the page list
 | show_parent   | choose yes to show the main parent page link above the list
-| current_class | none, bold, italic, underline
+| current_class | none, current-bold, current-italic or current-underline
 
 Notes
 -----
