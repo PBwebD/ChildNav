@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 /**
  * The widget functionality of the plugin.
  *
@@ -27,9 +25,6 @@ class Pbwebd_childnav_Widget extends WP_Widget {
 
         global $post;
 
-        // $title = apply_filters( 'widget_title', $instance['title'] );
-        // $args['before_title'] . $title . $args['after_title'];
-
         // GET ID OF PARENT PAGE
         if ( $post->post_parent ) {
             $ancestors = get_post_ancestors( $post->ID );
@@ -50,7 +45,17 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             'title_li' => $instance['list_title']
         ) );
 
-        echo '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
+        $current_class = $instance['current'];
+
+        echo '<div class="childmenu">';
+
+        if( $instance['show_parent'] == 'yes' ) {
+
+            echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+
+        }
+
+        echo '<ul class="' . $current_class . '">' . $page_list . '</ul></div>';
 
     }
 
@@ -60,7 +65,9 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $include = ( empty($instance['include']) ) ? '' : $instance['include'];
         $exclude = ( empty($instance['exclude']) ) ? '' : $instance['exclude'];
         $sort = ( empty($instance['sort']) ) ? 'menu_order' : $instance['sort'];
-        $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title']; ?>
+        $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title'];
+        $show_parent = ( empty($instance['show_parent']) ) ? 'no' : $instance['show_parent'];
+        $current_class = ( empty($instance['current_class']) ) ? 'none' : $current_class; ?>
 
         <p>
             <label for="<?php echo $this->get_field_id('depth'); ?>">Depth:</label>
@@ -94,6 +101,20 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             <input type="text" id="<?php echo $this->get_field_id('list_title'); ?>" name="<?php echo $this->get_field_name('list_title'); ?>" value="<?php echo $list_title; ?>" />
         </p>
 
+        <p>
+            <label>Show Parent?</label>
+            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="yes"<?php echo ( $show_parent == 'yes' ) ? ' checked="checked"' : ''; ?>> Yes<br />
+            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="no"<?php echo ( $show_parent == 'no' ) ? ' checked="checked"' : ''; ?>> No
+        </p>
+
+        <p>
+            <label>Current Page Style</label>
+            <input type="radio" name="<?php echo $this->get_field_name('current_class'); ?>" value="none" <?php checked($current_class, 'none'); ?>> Default (None - Inherits any custom styles from the theme)<br />
+            <input type="radio" name="<?php echo $this->get_field_name('current_class'); ?>" value="current-bold" <?php checked($current_class, 'current-bold'); ?>> Bold Font<br />
+            <input type="radio" name="<?php echo $this->get_field_name('current_class'); ?>" value="current-italic" <?php checked($current_class, 'current-italic'); ?>> Italic Font<br />
+            <input type="radio" name="<?php echo $this->get_field_name('current_class'); ?>" value="current-underline" <?php checked($current_class, 'current-underline'); ?>> Underline Text
+        </p>
+
     <?php }
 
     public function update( $new_instance, $old_instance ) {
@@ -105,6 +126,8 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $instance['exclude'] = preg_replace('/\s+/', '', $new_instance['exclude']);
         $instance['sort'] = ( empty($new_instance['sort']) ) ? 'menu_order' : $new_instance['sort'];
         $instance['list_title'] = ( empty($new_instance['list_title']) ) ? '' : $new_instance['list_title'];
+        $instance['show_parent'] = ( empty($new_instance['show_parent']) ) ? 'no' : $new_instance['show_parent'];
+        $instance['current_class'] = ( empty($new_instance['current_class']) ) ? 'none' : $new_instance['current_class'];
 
         return $instance;
 

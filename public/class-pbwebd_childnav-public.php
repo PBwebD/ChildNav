@@ -103,13 +103,17 @@ class Pbwebd_childnav_Public {
         $exclude = ( empty($options['exclude']) ) ? '' : $options['exclude'];
         $sort = ( empty($options['sort']) ? 'menu_order' : $options['sort']);
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
+        $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
+        $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
 
 		$atts = shortcode_atts( array(
 			'depth' => $depth,
 			'exclude' => $exclude,
 			'include' => $include,
 			'sort' => $sort,
-			'list_title' => $list_title
+			'list_title' => $list_title,
+			'show_parent' => $show_parent,
+			'current_class' => $current_class
 		), $atts );
 
 		// todo? wrapper class option
@@ -147,7 +151,17 @@ class Pbwebd_childnav_Public {
 			'title_li' => $atts['list_title']
 		) );
 
-		return '<div class="childmenu"><ul>' . $page_list . '</ul></div>';
+		$page_string = '<div class="childmenu">';
+
+		if( $show_parent == 'yes' ) {
+
+			$page_string .= '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+
+		}
+
+		$page_string .= '<ul class="' . $current_class . '">' . $page_list . '</ul></div>';
+
+		return $page_string;
 
 	}
 

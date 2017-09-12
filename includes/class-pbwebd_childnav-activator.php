@@ -24,7 +24,9 @@ class Pbwebd_childnav_Activator {
             'exclude' => '',
             'include' => '',
             'sort' => 'menu_order',
-            'list_title' => ''
+            'list_title' => '',
+            'show_parent' => 'no',
+            'current_class' => 'none'
         );
 
         // Save defaults array as settings

@@ -1,13 +1,25 @@
-# ChildNav
-A WordPress plugin to display child (and parent) pages.
+WordPress Plugin: Insert Child Nav
+==================================
+A WordPress plugin to display child (and parent) pages with a shortcode or widget.
 
-## Possible TODOs
-* Elect to show parent page as text or link
-* ADD pages to top or bottom of list
-* Option to indicate current page and options for how to show it
+Attributes
+----------
+Set default values, set widget values, and override default values with shortcode attributes.
 
-## Notes
-* Include ONLY includes pages listed
-* Shortcode attributes: depth, include, exclude, sort, list_title
-* Depth: -1 is a list, 0 is a nested list, 1 is 1 level, etc
-* Won’t list pages for the main blog page or any of the posts.
+| Attribute     | Notes
+| ------------- | --------------------------
+| depth         | -1 (list of all), 0 (nested list of all), 1+ (# of levels)
+| include       | comma-separated list of page IDs, ONLY includes pages listed
+| exclude       | comma-separated list of page IDs
+| sort          | menu order, post date, post title, post name, post parent
+| list_title    | text to display above the page list
+| show_parent   | choose yes to show the main parent page link above the list
+| current_class | none, bold, italic, underline
+
+Notes
+-----
+* List won't display on the main blog page or any of the post pages.
+
+Possible TODOs
+--------------
+* ADD pages to top or bottom of list - useful for a home page or sitemap.

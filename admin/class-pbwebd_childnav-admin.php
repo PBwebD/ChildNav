@@ -136,13 +136,17 @@ class Pbwebd_childnav_Admin {
     	$include = $input['include'];
     	$exclude = $input['exclude'];
     	$sort = $input['sort'];
-    	$list_title = $input['list_title']
+    	$list_title = $input['list_title'];
+    	$show_parent = $input['show_parent'];
+    	$current_class = $input['current_class'];
 
     	$valid['depth'] = ( $depth < -1 ) ? -1 : $depth;
     	$valid['include'] = preg_replace('/\s+/', '', $include);
     	$valid['exclude'] = preg_replace('/\s+/', '', $exclude);
     	$valid['sort'] = ( empty($sort) ) ? 'menu_order' : $sort;
     	$valid['list_title'] = $list_title;
+    	$valid['show_parent'] = ( empty($show_parent) ) ? 'no' : $show_parent;
+    	$valid['current_class'] = ( empty($current_class) ) ? 'none' : $current_class;
 
     	return $valid;
  	}

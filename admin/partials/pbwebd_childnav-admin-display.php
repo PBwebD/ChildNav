@@ -28,6 +28,8 @@
         $exclude = ( empty($options['exclude']) ) ? '' : $options['exclude'];
         $sort = ( empty($options['sort']) ) ? 'menu_order' : $options['sort'];
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
+        $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
+        $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name); ?>
@@ -73,6 +75,24 @@
                 <label for="<?php echo $this->plugin_name; ?>-list_title"><?php esc_attr_e('List Title:', $this->plugin_name); ?></label>
                 <span><input type="number" id="<?php echo $this->plugin_name; ?>-list_title" name="<?php echo $this->plugin_name; ?>[list_title]" value="<?php echo $list_title; ?>" /></span>
                 <p class="subtext">Title to display above the page list.</p>
+            </div>
+
+            <!-- Show Parent Page -->
+            <div class="input-wrapper">
+                <label><?php esc_attr_e('Show Parent?', $this->plugin_name); ?></label>
+                <span><input type="radio" name="<?php echo $this->plugin_name; ?>[show_parent]" value="yes" <?php checked($show_parent, 'yes'); ?>> Yes<br />
+                <input type="radio" name="<?php echo $this->plugin_name; ?>[show_parent]" value="no" <?php checked($show_parent, 'no'); ?>> No</span>
+                <p class="subtext">Select whether to display the parent page title and link above the page list.</p>
+            </div>
+
+            <!-- Current Page Style -->
+            <div class="input-wrapper">
+                <label><?php esc_attr_e('Current Page Style', $this->plugin_name); ?></label>
+                <span><input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="none" <?php checked($current_class, 'none'); ?>> Default (None - Inherits any custom styles from the theme)<br />
+                <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-bold" <?php checked($current_class, 'current-bold'); ?>> Bold Font<br />
+                <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-italic" <?php checked($current_class, 'current-italic'); ?>> Italic Font<br />
+                <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-underline" <?php checked($current_class, 'current-underline'); ?>> Underline Text</span>
+                <p class="subtext">Select how to indicate the current page. Default will not add any additional styles.</p>
             </div>
 
         </fieldset>
