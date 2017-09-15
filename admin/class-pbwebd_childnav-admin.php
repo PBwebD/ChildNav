@@ -149,8 +149,14 @@ class Pbwebd_childnav_Admin {
     	$valid['list_title'] = $list_title;
     	$valid['show_parent'] = ( empty($show_parent) ) ? 'no' : $show_parent;
     	$valid['current_class'] = ( empty($current_class) ) ? 'none' : $current_class;
-    	$valid['before_list'] = wp_kses($before_list, array('li' => array('class')));
-    	$valid['after_list'] = wp_kses($after_list, array('li' => array('class')));
+    	$valid['before_list'] = wp_kses($before_list, array(
+    		'li' => array('class'),
+    		'a' => array('href', 'class', 'target', 'rel')
+    	));
+    	$valid['after_list'] = wp_kses($after_list, array(
+    		'li' => array('class'),
+    		'a' => array('href', 'class', 'target', 'rel')
+    	));
 
     	return $valid;
  	}

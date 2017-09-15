@@ -144,8 +144,14 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $instance['list_title'] = ( empty($new_instance['list_title']) ) ? '' : sanitize_text_field($new_instance['list_title']);
         $instance['show_parent'] = ( empty($new_instance['show_parent']) ) ? 'no' : $new_instance['show_parent'];
         $instance['current_class'] = ( empty($new_instance['current_class']) ) ? 'none' : $new_instance['current_class'];
-        $instance['before_list'] = wp_kses($new_instance['before_list'], array('li' => array('class')));
-        $instance['after_list'] = wp_kses($new_instance['after_list'], array('li' => array('class')));
+        $instance['before_list'] = wp_kses($new_instance['before_list'], array(
+            'li' => array('class'),
+            'a' => array('href', 'class', 'target', 'rel')
+        ));
+        $instance['after_list'] = wp_kses($new_instance['after_list'], array(
+            'li' => array('class'),
+            'a' => array('href', 'class', 'target', 'rel')
+        ));
 
         return $instance;
 
