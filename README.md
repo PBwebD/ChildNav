@@ -15,8 +15,8 @@ Set default values, set widget values, and override default values with shortcod
 | list_title    | text to display above the page list
 | show_parent   | choose yes to show the main parent page link above the list
 | current_class | none, current-bold, current-italic or current-underline
-| before_list   | allowed tags: li; allowed attrs: class
-| after_list    | allowed tags: li; allowed attrs: class
+| before_list   | allowed tags: li, a; allowed attrs: class, href, target, rel
+| after_list    | allowed tags: li, a; allowed attrs: class, href, target, rel
 
 Notes
 -----
