@@ -15,11 +15,9 @@ Set default values, set widget values, and override default values with shortcod
 | list_title    | text to display above the page list
 | show_parent   | choose yes to show the main parent page link above the list
 | current_class | none, current-bold, current-italic or current-underline
+| before_list   | allowed tags: li; allowed attrs: class
+| after_list    | allowed tags: li; allowed attrs: class
 
 Notes
 -----
 * List won't display on the main blog page or any of the post pages.
-
-Possible TODOs
---------------
-* ADD pages to top or bottom of list - useful for a home page or sitemap.

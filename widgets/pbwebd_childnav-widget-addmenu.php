@@ -49,13 +49,17 @@ class Pbwebd_childnav_Widget extends WP_Widget {
 
         echo '<div class="childmenu">';
 
-        if( $instance['show_parent'] == 'yes' ) {
+            if( $instance['show_parent'] == 'yes' ) {
+                echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+            }
 
-            echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+            echo '<ul class="' . $current_class . '">' .
+                $instance['before_list'] .
+                $page_list .
+                $instance['after_list'] .
+            '</ul>
 
-        }
-
-        echo '<ul class="' . $current_class . '">' . $page_list . '</ul></div>';
+        </div>';
 
     }
 
@@ -67,7 +71,9 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $sort = ( empty($instance['sort']) ) ? 'menu_order' : $instance['sort'];
         $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title'];
         $show_parent = ( empty($instance['show_parent']) ) ? 'no' : $instance['show_parent'];
-        $current_class = ( empty($instance['current_class']) ) ? 'none' : $current_class; ?>
+        $current_class = ( empty($instance['current_class']) ) ? 'none' : $current_class;
+        $before_list = $instance['before_list'];
+        $after_list = $instance['after_list']; ?>
 
         <p>
             <label for="<?php echo $this->get_field_id('depth'); ?>">Depth:</label>
@@ -115,6 +121,16 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             <input type="radio" name="<?php echo $this->get_field_name('current_class'); ?>" value="current-underline" <?php checked($current_class, 'current-underline'); ?>> Underline Text
         </p>
 
+        <p>
+            <label for="<?php echo $this->get_field_id('before_list'); ?>">Add items to top of list:</label>
+            <textarea id="<?php echo $this->get_field_id('before_list'); ?>" name="<?php echo $this->get_field_name('before_list'); ?>"><?php echo $before_list; ?></textarea>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('after_list'); ?>">Add  items to bottom of list:</label>
+            <textarea id="<?php echo $this->get_field_id('after_list'); ?>" name="<?php echo $this->get_field_name('after_list'); ?>"><?php echo $after_list; ?></textarea>
+        </p>
+
     <?php }
 
     public function update( $new_instance, $old_instance ) {
@@ -122,12 +138,14 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $instance = $old_instance;
 
         $instance['depth'] = ( $new_instance['depth'] < -1 ) ? -1 : $new_instance['depth'];
-        $instance['include'] = preg_replace('/\s+/', '', $new_instance['include']);
-        $instance['exclude'] = preg_replace('/\s+/', '', $new_instance['exclude']);
+        $instance['include'] = preg_replace('/\s+/', '', sanitize_text_field($new_instance['include']));
+        $instance['exclude'] = preg_replace('/\s+/', '', sanitize_text_field($new_instance['exclude']));
         $instance['sort'] = ( empty($new_instance['sort']) ) ? 'menu_order' : $new_instance['sort'];
-        $instance['list_title'] = ( empty($new_instance['list_title']) ) ? '' : $new_instance['list_title'];
+        $instance['list_title'] = ( empty($new_instance['list_title']) ) ? '' : sanitize_text_field($new_instance['list_title']);
         $instance['show_parent'] = ( empty($new_instance['show_parent']) ) ? 'no' : $new_instance['show_parent'];
         $instance['current_class'] = ( empty($new_instance['current_class']) ) ? 'none' : $new_instance['current_class'];
+        $instance['before_list'] = wp_kses($new_instance['before_list'], array('li' => array('class')));
+        $instance['after_list'] = wp_kses($new_instance['after_list'], array('li' => array('class')));
 
         return $instance;
 

@@ -133,12 +133,14 @@ class Pbwebd_childnav_Admin {
     	$valid = array();
 
     	$depth = intval($input['depth']);
-    	$include = $input['include'];
-    	$exclude = $input['exclude'];
+    	$include = sanitize_text_field($input['include']);
+    	$exclude = sanitize_text_field($input['exclude']);
     	$sort = $input['sort'];
-    	$list_title = $input['list_title'];
+    	$list_title = sanitize_text_field($input['list_title'];
     	$show_parent = $input['show_parent'];
     	$current_class = $input['current_class'];
+    	$before_list = $input['before_list'];
+    	$after_list = $input['after_list'];
 
     	$valid['depth'] = ( $depth < -1 ) ? -1 : $depth;
     	$valid['include'] = preg_replace('/\s+/', '', $include);
@@ -147,6 +149,8 @@ class Pbwebd_childnav_Admin {
     	$valid['list_title'] = $list_title;
     	$valid['show_parent'] = ( empty($show_parent) ) ? 'no' : $show_parent;
     	$valid['current_class'] = ( empty($current_class) ) ? 'none' : $current_class;
+    	$valid['before_list'] = wp_kses($before_list, array('li' => array('class')));
+    	$valid['after_list'] = wp_kses($after_list, array('li' => array('class')));
 
     	return $valid;
  	}

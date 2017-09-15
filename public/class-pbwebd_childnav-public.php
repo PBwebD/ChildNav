@@ -105,6 +105,8 @@ class Pbwebd_childnav_Public {
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
         $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
         $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
+        $before_list = $options['before_list'];
+        $after_list = $options['after_list'];
 
 		$atts = shortcode_atts( array(
 			'depth' => $depth,
@@ -113,7 +115,9 @@ class Pbwebd_childnav_Public {
 			'sort' => $sort,
 			'list_title' => $list_title,
 			'show_parent' => $show_parent,
-			'current_class' => $current_class
+			'current_class' => $current_class,
+			'before_list' => $before_list,
+			'after_list' => $after_list
 		), $atts );
 
 		// todo? wrapper class option
@@ -153,13 +157,15 @@ class Pbwebd_childnav_Public {
 
 		$page_string = '<div class="childmenu">';
 
-		if( $show_parent == 'yes' ) {
+			if( $show_parent == 'yes' ) {
+				$page_string .= '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+			}
 
-			$page_string .= '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
-
-		}
-
-		$page_string .= '<ul class="' . $current_class . '">' . $page_list . '</ul></div>';
+			$page_string .= '<ul class="' . $current_class . '">' .
+							$atts['before_list'] .
+							$page_list .
+						'</ul>
+		</div>';
 
 		return $page_string;
 

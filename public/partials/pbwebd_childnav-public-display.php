@@ -46,12 +46,16 @@ $current_class = $options['current_class'];
 
 echo '<div class="childmenu">';
 
-if( $show_parent == 'yes' ) {
+    if( $show_parent == 'yes' ) {
+        echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+    }
 
-    echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
+    echo '<ul class="' . $current_class . '">' .
+        $options['before_list'] .
+        $page_list .
+        $options['after_list'] .
+    '</ul>
 
-}
-
-echo '<ul class="' . $current_class . '">' . $page_list . '</ul></div>';
+</div>';
 
 ?>

@@ -30,6 +30,8 @@
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
         $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
         $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
+        $before_list = $options['before_list'];
+        $after_list = $options['after_list'];
 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name); ?>
@@ -94,6 +96,18 @@
                 <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-underline" <?php checked($current_class, 'current-underline'); ?>> Underline Text</span>
                 <p class="subtext">Select how to indicate the current page. Default will not add any additional styles.</p>
             </div>
+
+            <div class="input-wrapper">
+                <label for="<?php echo $this->plugin_name; ?>-before_list"><?php esc_attr_e('HTML before list items:', $this->plugin_name); ?></label>
+                <span><textarea id="<?php echo $this->plugin_name; ?>-before_list" name="<?php echo $this->plugin_name; ?>[before_list]"><?php echo $before_list; ?></textarea></span>
+                <p class="subtext">List items inserted directly inside the opening ul tag. Use this to add custom pages to the top of the list.</p>
+            </p>
+
+            <div class="input-wrapper">
+                <label for="<?php echo $this->plugin_name; ?>-after_list"><?php esc_attr_e('HTML before list items:', $this->plugin_name); ?></label>
+                <span><textarea id="<?php echo $this->plugin_name; ?>-after_list" name="<?php echo $this->plugin_name; ?>[after_list]"><?php echo $after_list; ?></textarea></span>
+                <p class="subtext">List items inserted directly inside the opening ul tag. Use this to add custom pages to the top of the list.</p>
+            </p>
 
         </fieldset>
 
