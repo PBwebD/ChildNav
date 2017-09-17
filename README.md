@@ -2,6 +2,16 @@ WordPress Plugin: Insert Child Nav
 ==================================
 A WordPress plugin to display child (and parent) pages with a shortcode or widget.
 
+Shortcode
+---------
+**Basic Use**
+[childmenu]
+*This will utilize the defaults from the settings page.*
+
+**Advanced Use**
+[childmenu depth="-1" list_title="Navigation"]
+*Override the defaults with attributes.*
+
 Attributes
 ----------
 Set default values, set widget values, and override default values with shortcode attributes.

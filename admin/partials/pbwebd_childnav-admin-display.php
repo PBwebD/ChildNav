@@ -30,8 +30,8 @@
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
         $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
         $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
-        $before_list = $options['before_list'];
-        $after_list = $options['after_list'];
+        $before_list = ( empty($options['include']) ) ? '' : $options['before_list'];
+        $after_list = ( empty($options['include']) ) ? '' : $options['after_list'];
 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name); ?>
@@ -89,7 +89,7 @@
 
             <!-- Current Page Style -->
             <div class="input-wrapper">
-                <label><?php esc_attr_e('Current Page Style', $this->plugin_name); ?></label>
+                <label><?php esc_attr_e('Current Page Style:', $this->plugin_name); ?></label>
                 <span><input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="none" <?php checked($current_class, 'none'); ?>> Default (None - Inherits any custom styles from the theme)<br />
                 <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-bold" <?php checked($current_class, 'current-bold'); ?>> Bold Font<br />
                 <input type="radio" name="<?php echo $this->plugin_name; ?>[current_class]" value="current-italic" <?php checked($current_class, 'current-italic'); ?>> Italic Font<br />
@@ -101,18 +101,20 @@
                 <label for="<?php echo $this->plugin_name; ?>-before_list"><?php esc_attr_e('HTML before list items:', $this->plugin_name); ?></label>
                 <span><textarea id="<?php echo $this->plugin_name; ?>-before_list" name="<?php echo $this->plugin_name; ?>[before_list]"><?php echo $before_list; ?></textarea></span>
                 <p class="subtext">List items inserted directly inside the opening ul tag. Use this to add custom pages to the top of the list.</p>
-            </p>
+            </div>
 
             <div class="input-wrapper">
-                <label for="<?php echo $this->plugin_name; ?>-after_list"><?php esc_attr_e('HTML before list items:', $this->plugin_name); ?></label>
+                <label for="<?php echo $this->plugin_name; ?>-after_list"><?php esc_attr_e('HTML after list items:', $this->plugin_name); ?></label>
                 <span><textarea id="<?php echo $this->plugin_name; ?>-after_list" name="<?php echo $this->plugin_name; ?>[after_list]"><?php echo $after_list; ?></textarea></span>
                 <p class="subtext">List items inserted directly inside the opening ul tag. Use this to add custom pages to the top of the list.</p>
-            </p>
+            </div>
 
         </fieldset>
 
         <?php submit_button('Save all changes', 'primary', 'submit', TRUE); ?>
 
     </form>
+
+    <p class="cite">This plugin is maintained on GitHub: <a href="https://github.com/PBwebD/ChildNav" target="_blank">https://github.com/PBwebD/ChildNav</a>. Head over there for more info on how these settings work. Find a bug? <a href="https://github.com/PBwebD/ChildNav/issues" target="_blank">Let us know!</a></p>
 
 </div>

@@ -5,12 +5,17 @@
 
 .childnav-wrap { padding: 15px; }
 .childnav-wrap h2 { margin-bottom: 15px !important; }
-.input-wrapper { padding: 10px; }
-.input-wrapper span { display: inline-block; vertical-align: middle; }
-.input-wrapper label { display: inline-block; text-align: right; width: 100px; vertical-align: middle; }
-.input-wrapper input { padding: 7px 10px; height: auto; }
+.input-wrapper { padding: 15px 10px; border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; }
+.input-wrapper:nth-child(odd){ background-color: #e8e8e8; }
+.input-wrapper span { display: inline-block; vertical-align: middle; padding-left: 5px; width: 50%; max-width: 400px; }
+.input-wrapper label { display: inline-block; text-align: right; width: 160px; vertical-align: middle; font-weight: bold; }
+.input-wrapper input[type="text"], .input-wrapper input[type="number"], .input-wrapper textarea, .input-wrapper select { padding: 7px 10px; width: 100%; }
+.input-wrapper textarea { height: 150px; }
+.input-wrapper input[type="radio"] { margin: 2px; }
+.subtext { font-size: 12px; font-style: italic; margin-top: 5px; margin-left: 170px; margin-bottom: 0; }
 
-.subtext { font-size: 12px; font-style: italic; margin-top: 0; margin-left: 105px; }
+.childnav-wrap .cite { padding: 25px; background: #FFFFFF; }
+.childnav-wrap .cite a { font-weight: bold; }
 
 @media screen and (max-width: 500px){
     .input-wrapper label { width: auto; }

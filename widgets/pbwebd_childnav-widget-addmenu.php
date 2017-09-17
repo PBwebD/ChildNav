@@ -34,29 +34,39 @@ class Pbwebd_childnav_Widget extends WP_Widget {
             $parent = $post->ID;
         }
 
+        $depth = ( intval($instance['depth']) < -1 ) ? -1 : intval($instance['depth']);
+        $include = ( empty($instance['include']) ) ? '' : $instance['include'];
+        $exclude = ( empty($instance['exclude']) ) ? '' : $instance['exclude'];
+        $sort = ( empty($instance['sort']) ) ? 'menu_order' : $instance['sort'];
+        $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title'];
+        $show_parent = ( empty($instance['show_parent']) ) ? 'no' : $instance['show_parent'];
+        $current_class = ( empty($instance['current_class']) ) ? 'none' : $instance['current_class'];
+        $before_list = ( empty($instance['include']) ) ? '' : $instance['before_list'];
+        $after_list = ( empty($instance['include']) ) ? '' : $instance['after_list'];
+
         $page_list = wp_list_pages( array(
             'child_of' => $parent,
-            'depth' => $instance['depth'],
+            'depth' => $depth,
             'echo' => 0,
-            'exclude' => $instance['exclude'],
-            'include' => $instance['include'],
+            'exclude' => $exclude,
+            'include' => $include,
             'post_type' => $post->post_type,
-            'sort_column' => $instance['sort'],
-            'title_li' => $instance['list_title']
+            'sort_column' => $sort,
+            'title_li' => $list_title
         ) );
 
-        $current_class = $instance['current'];
+        $current_class = $current_class;
 
         echo '<div class="childmenu">';
 
-            if( $instance['show_parent'] == 'yes' ) {
+            if( $show_parent == 'yes' ) {
                 echo '<h3><a href="' . get_permalink($parent) . '">' . get_the_title($parent) . '</a></h3>';
             }
 
             echo '<ul class="' . $current_class . '">' .
-                $instance['before_list'] .
+                $before_list .
                 $page_list .
-                $instance['after_list'] .
+                $after_list .
             '</ul>
 
         </div>';
@@ -72,8 +82,8 @@ class Pbwebd_childnav_Widget extends WP_Widget {
         $list_title = ( empty($instance['list_title']) ) ? '' : $instance['list_title'];
         $show_parent = ( empty($instance['show_parent']) ) ? 'no' : $instance['show_parent'];
         $current_class = ( empty($instance['current_class']) ) ? 'none' : $current_class;
-        $before_list = $instance['before_list'];
-        $after_list = $instance['after_list']; ?>
+        $before_list = ( empty($instance['include']) ) ? '' : $instance['before_list'];
+        $after_list = ( empty($instance['include']) ) ? '' : $instance['after_list']; ?>
 
         <p>
             <label for="<?php echo $this->get_field_id('depth'); ?>">Depth:</label>

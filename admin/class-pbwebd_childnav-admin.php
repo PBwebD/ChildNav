@@ -136,7 +136,7 @@ class Pbwebd_childnav_Admin {
     	$include = sanitize_text_field($input['include']);
     	$exclude = sanitize_text_field($input['exclude']);
     	$sort = $input['sort'];
-    	$list_title = sanitize_text_field($input['list_title'];
+    	$list_title = sanitize_text_field($input['list_title']);
     	$show_parent = $input['show_parent'];
     	$current_class = $input['current_class'];
     	$before_list = $input['before_list'];

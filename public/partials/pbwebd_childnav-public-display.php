@@ -22,6 +22,16 @@ global $post;
 
 $options = get_option($this->plugin_name);
 
+$depth = ( intval($options['depth']) < -1 ) ? -1 : intval($options['depth']);
+$include = ( empty($options['include']) ) ? '' : $options['include'];
+$exclude = ( empty($options['exclude']) ) ? '' : $options['exclude'];
+$sort = ( empty($options['sort']) ) ? 'menu_order' : $options['sort'];
+$list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
+$show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
+$current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
+$before_list = ( empty($options['include']) ) ? '' : $options['before_list'];
+$after_list = ( empty($options['include']) ) ? '' : $options['after_list'];
+
 // GET ID OF PARENT PAGE
 if ( $post->post_parent ) {
     $ancestors = get_post_ancestors( $post->ID );
@@ -33,13 +43,13 @@ if ( $post->post_parent ) {
 
 $page_list = wp_list_pages( array(
     'child_of' => $parent,
-    'depth' => $options['depth'],
+    'depth' => $depth,
     'echo' => 0,
-    'exclude' => $options['exclude'],
-    'include' => $options['include'],
+    'exclude' => $exclude,
+    'include' => $include,
     'post_type' => $post->post_type,
-    'sort_column' => $options['sort'],
-    'title_li' => $options['list_title']
+    'sort_column' => $sort,
+    'title_li' => $list_title
 ) );
 
 $current_class = $options['current_class'];
