@@ -120,9 +120,6 @@ class Pbwebd_childnav_Public {
 			'after_list' => $after_list
 		), $atts );
 
-		// todo? wrapper class option
-		// todo? use current page styles option
-
 		// CHECK DEPTH
 		if( $atts['depth'] < -1 ){
 			$atts['depth'] = -1;

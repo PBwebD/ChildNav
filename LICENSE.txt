@@ -1,15 +1,3 @@
-pbwebd_childnav-admin-display.php
-class-pbwebd_childnav-activator.php
-class-pbwebd_childnav-deactivator.php
-pbwebd_childnav-widget-addmenu.php
-
-
-TODO: add activation stuff
-TODO: add deactivation stuff
-TODO: create admin settings page
-TODO: create widget - fields and saving
-TODO: check on scripts/styles and how to add them - add base styles
-
                     GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
 

@@ -30,8 +30,8 @@
         $list_title = ( empty($options['list_title']) ) ? '' : $options['list_title'];
         $show_parent = ( empty($options['show_parent']) ) ? 'no' : $options['show_parent'];
         $current_class = ( empty($options['current_class']) ) ? 'none' : $options['current_class'];
-        $before_list = ( empty($options['include']) ) ? '' : $options['before_list'];
-        $after_list = ( empty($options['include']) ) ? '' : $options['after_list'];
+        $before_list = ( empty($options['before_list']) ) ? '' : $options['before_list'];
+        $after_list = ( empty($options['after_list']) ) ? '' : $options['after_list'];
 
         settings_fields($this->plugin_name);
         do_settings_sections($this->plugin_name); ?>

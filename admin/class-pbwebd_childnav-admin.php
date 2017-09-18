@@ -127,9 +127,6 @@ class Pbwebd_childnav_Admin {
 	 */
 	public function validate( $input ) {
 
-    	// todo? wrapper class option
-		// todo? use current page styles option
-
     	$valid = array();
 
     	$depth = intval($input['depth']);

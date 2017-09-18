@@ -119,8 +119,8 @@ class Pbwebd_childnav_Widget extends WP_Widget {
 
         <p>
             <label>Show Parent?</label>
-            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="yes"<?php echo ( $show_parent == 'yes' ) ? ' checked="checked"' : ''; ?>> Yes<br />
-            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="no"<?php echo ( $show_parent == 'no' ) ? ' checked="checked"' : ''; ?>> No
+            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="yes"<?php checked($show_parent, 'yes' ); ?>> Yes<br />
+            <input type="radio" name="<?php echo $this->get_field_name('show_parent'); ?>" value="no"<?php checked($show_parent, 'no' ); ?>> No
         </p>
 
         <p>

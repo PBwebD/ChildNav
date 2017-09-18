@@ -13,9 +13,6 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <?php
-// todo? wrapper class option
-// todo? use current page styles option
-// do I need to validate vars?
 
 // Get all options
 global $post;
